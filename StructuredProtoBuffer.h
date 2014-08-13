@@ -33,7 +33,7 @@ namespace spb
 
 class IStructuredProtoBuffer
 {
-public:
+protected:
     static inline ::std::string _any_to_str(int8_t t)
     {
         ::std::stringstream s;
@@ -1478,8 +1478,8 @@ protected: \
             { \
                 return tmp.DebugString(); \
             } \
-            return ::spb::IStructuredProtoBuffer::_any_to_str(_GetUValue(data)) + "/" \
-                 + ::spb::IStructuredProtoBuffer::_buf_debug_str(_GetString(data).data(), _GetString(data).size()); \
+            return _any_to_str(_GetUValue(data)) + "/" \
+                 + _buf_debug_str(_GetString(data).data(), _GetString(data).size()); \
         } \
         _SPB_DEFINE_TLV_DATA_TO_JSON_METHOD() \
     }; \
@@ -1526,7 +1526,7 @@ public: \
             const char* name = m->_GetTagName(); \
             if (NULL != name) \
             { \
-                return ::std::string(name) + "=" + m->DebugString(_data) + "\n"; \
+                return ::std::string(name) + "=" + m->DebugString(_data); \
             } \
         } \
         return _any_to_str((uint64_t)(_tag)) + "=" \
@@ -1794,8 +1794,8 @@ protected: \
             { \
                 return tmp.DebugString(); \
             } \
-            return ::spb::IStructuredProtoBuffer::_any_to_str(_GetUValue(data)) + "/" \
-                 + ::spb::IStructuredProtoBuffer::_buf_debug_str(_GetString(data).data(), _GetString(data).size()); \
+            return _any_to_str(_GetUValue(data)) + "/" \
+                 + _buf_debug_str(_GetString(data).data(), _GetString(data).size()); \
         } \
         _SPB_DEFINE_TLV_DATA_TO_JSON_METHOD() \
     protected: \
