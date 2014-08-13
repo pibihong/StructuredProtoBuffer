@@ -32,7 +32,7 @@ Append the serialized data to a string, return the data length serialized
 		size_type ArraySize() const
 Get the length of serialized data
 		
-void clear()
+		void clear()
 Clear the data
 		
 		::std::string DebugString(const ::std::string& tab="") const
