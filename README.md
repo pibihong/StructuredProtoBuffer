@@ -56,6 +56,7 @@ numeric : IStructuredProtoBuffer
 		void SetNumeric(float n)
 		void SetNumeric(double n)
 Set the numeric value
+
 		int64_t GetNumeric()
 		uint64_t GetUNumeric()
 		double GetDNumeric()
@@ -75,6 +76,7 @@ hex data will show data in hex when call DebugString or toJson
 
 		this_type& set(data_type value)
 set the value, <b>assign / operator= / operator()</b> are all the same function
+
 		const data_type& get() const
 		data_type& get()
 		operator data_type() const
@@ -91,16 +93,20 @@ get the buffer size
 		char_type& get(size_type index)
 		const char_type& get(size_type index) const
 get the char at index, throw exception when out of range
+
 		char_type& operator[](size_type index)
 		const char_type& operator[](size_type index) const
 get the char at index, no throw exception when out of range
+
 		data_type& get()
 		const data_type& get() const
 get the buffer array
+
 		this_type& set(const data_type& arr)
 		this_type& set(const string_type& str, size_t subpos=0, size_t sublen=string_type::npos)
 		this_type& set(char_type ch, size_t n=string_type::npos)
 set the buffer data, <b>assign / operator= / operator()</b> are all the same function
+
 		this_type& fill(char_type ch, size_t n=string_type::npos)
 fill the data with char
 
@@ -114,12 +120,14 @@ same use as std::string in STL
 		char& get(size_type index)
 		const char& get(size_type index) const
 get the char at index, same function with std::string::at
+
 		string_type& get()
 		const string_type& get() const
 		operator string_type() const
 		operator string_type&()
 		operator const string_type&() const
 get the string_type
+
 		this_type& set(...)
 		this_type& operator()(...)
 set the string, same function with std::string::assign
@@ -132,8 +140,10 @@ to store tag/length/value
 
 		tag_type tag() const
 get current tag id
+
 		tag_id_type get_##_tag_id() const
 get tag_id value, return default value when tag_id not match
+
 		void set_##_tag_id(...)
 change tag_id to it, and set the value, use any method support set method in basic_types
 
@@ -146,8 +156,10 @@ to store the set of TLV
 
 		bool has_##_tag_id() const
 check whether have the tag_id in this set
+
 		tag_data_type_##_tag_id get_##_tag_id() const
 get the value of tag_id
+
 		void set_##_tag_id(...)
 		void tag_##_tag_id.set(...)
 		void tag_##_tag_id.assign(...)
@@ -172,7 +184,7 @@ append a pkg to the container, T is a type which can assign to the package
 
 map<len_type, pkg_type> : IStructuredProtoBuffer
 -----------------------------------
-same use as std::map in STL, do not use these struct direct, use macro to define them
+same use as std::map in STL, do not use these struct direct, use macro to define them</br>
 the pkg_type can only be TLV or object type which have defined key member
 
 
@@ -184,6 +196,7 @@ use macro to define an object, you can operator the member directly with the met
 		const ::std::string DebugInfo(const ::std::string& tab="") const
 		const ::Json::Value& Info() const
 get the type/offset/size of the members on this message
+
 		::std::string& GetExtendBuffer()
     const ::std::string& GetExtendBuffer() const
 if you use SPB_DEF_LEN_MEMBER declare a length member in object, you can use this interface to get the extend buffer
@@ -192,7 +205,7 @@ if you use SPB_DEF_LEN_MEMBER declare a length member in object, you can use thi
 
 How to declare a TLV type
 -----------------------------------
-sample:
+
 		#define TAG_STR_ID 5  //no need to define, if you define this tag_name, you can access this tag_id by name
 		#define TAG_ID_TYPE uint8_t //no need to define
 		#define TAG_DATA_LEN_TYPE uint16_t //no need to define
@@ -209,7 +222,7 @@ sample:
 
 How to declare a TLVSET type
 -----------------------------------
-sample:
+
 		#define TAG_STR_ID 5  //no need to define, if you define this tag_name, you can access this tag_id by name
 		#define TAG_ID_TYPE uint8_t //no need to define
 		#define TAG_DATA_LEN_TYPE uint16_t //no need to define
@@ -225,7 +238,7 @@ sample:
 
 How to declare a object type
 -----------------------------------
-sample:
+
 		SPB_BEGIN_OBJECT(test_msg_string)
 		    SPB_DEF_MEMBER(string1, str1Test)
 		    SPB_DEF_MEMBER(string2, str2Test)
@@ -251,13 +264,13 @@ sample:
 		    SPB_DEF_MEMBER(buffer<32>, bufTest2)
 		SPB_END_OBJECT()
 		
-use this macro to define a length member
+		
 		SPB_DEF_LEN_MEMBER(_type)
+use this macro to define a length member
 
+		SPB_DEF_KEY_MEMBER(_type, _name)
 use this macro to define a key member
-		SPB_DEF_KEY_MEMBER(_type, _name)		
-
-use these macro to define a container member
+		
 		SPB_DEF_LIST1_MEMBER(_type, _name)
 		SPB_DEF_LIST2_MEMBER(_type, _name)
 		SPB_DEF_LIST4_MEMBER(_type, _name)
@@ -270,12 +283,13 @@ use these macro to define a container member
 		SPB_DEF_DEQUE2_MEMBER(_type, _name)
 		SPB_DEF_DEQUE4_MEMBER(_type, _name)
 		SPB_DEF_DEQUE8_MEMBER(_type, _name)
-                                        
-use these macro to define a map member
+use these macro to define a container member
+                                    
 		SPB_DEF_MAP1_MEMBER(_type, _name)
 		SPB_DEF_MAP2_MEMBER(_type, _name)
 		SPB_DEF_MAP4_MEMBER(_type, _name)
 		SPB_DEF_MAP8_MEMBER(_type, _name)
+use these macro to define a map member
 
 
 
