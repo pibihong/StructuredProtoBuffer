@@ -35,10 +35,10 @@ SPB_BEGIN_OBJECT(test_msg_string)
 SPB_END_OBJECT()
 
 SPB_BEGIN_OBJECT(test_msg)
-    SPB_DEF_LEN_MEMBER(uint8_t)
+    SPB_DEF_LEN_MEMBER(uint8_t) //will fill the ArraySize of the object, can only use this macro only once to define a len member
     SPB_DEF_MEMBER(uint8_t, u8Test)
     SPB_DEF_MEMBER(uint16_t, u16Test)
-    SPB_DEF_MEMBER(uint32_t, u32Test)
+    SPB_DEF_KEY_MEMBER(uint32_t, u32Test) //will be used for map type, can only use this macro only once to define a key member
     SPB_DEF_MEMBER(uint64_t, u64Test)
     SPB_DEF_MEMBER(float, fltTest)
     SPB_DEF_MEMBER(double, dblTest)
@@ -48,8 +48,8 @@ SPB_BEGIN_OBJECT(test_msg)
     SPB_DEF_MEMBER(test_msg_string, msgTest)
     SPB_DEF_LIST1_MEMBER(test_tlv, lstTLV)
     SPB_DEF_MAP1_MEMBER(test_tlv, mapTLV)
-    SPB_DEF_LIST2_MEMBER(test_msg_string, lstMSG)
-    SPB_DEF_LIST4_MEMBER(string1, lstSTR)
+    SPB_DEF_VECTOR2_MEMBER(test_msg_string, lstMSG)
+    SPB_DEF_DEQUE4_MEMBER(string1, lstSTR)
     SPB_DEF_MEMBER(buffer<32>, bufTest2)
 SPB_END_OBJECT()
 

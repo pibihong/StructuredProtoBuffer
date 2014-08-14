@@ -33,9 +33,9 @@ int main()
 	msg.tlvTest.set_TAG_STR_ID("str_tlv", 4);
 
     msg.tlvsetTest.set_1(80);
-	msg.tlvsetTest.set_2(160);
+	msg.tlvsetTest.tag_2(160);
 	msg.tlvsetTest.tag_3 = 320;
-	msg.tlvsetTest.set_4(640);
+	msg.tlvsetTest.tag_4.set(640);
 	msg.tlvsetTest.set_TAG_STR_ID("str_tlv", 4);
 
 	msg.msgTest.str1Test("str1");

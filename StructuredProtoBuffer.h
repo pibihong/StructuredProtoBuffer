@@ -1829,6 +1829,42 @@ protected: \
             _parent->set_##_tag_id(t1, t2, t3); \
             return *this; \
         } \
+        template <class T1> \
+        inline _tag_mem_type_##_tag_id& assign(T1 t1) \
+        { \
+            _parent->set_##_tag_id(t1); \
+            return *this; \
+        } \
+        template <class T1, class T2> \
+        inline _tag_mem_type_##_tag_id& assign(T1 t1, T2 t2) \
+        { \
+            _parent->set_##_tag_id(t1, t2); \
+            return *this; \
+        } \
+        template <class T1, class T2, class T3> \
+        inline _tag_mem_type_##_tag_id& assign(T1 t1, T2 t2, T3 t3) \
+        { \
+            _parent->set_##_tag_id(t1, t2, t3); \
+            return *this; \
+        } \
+        template <class T1> \
+        inline _tag_mem_type_##_tag_id& operator()(T1 t1) \
+        { \
+            _parent->set_##_tag_id(t1); \
+            return *this; \
+        } \
+        template <class T1, class T2> \
+        inline _tag_mem_type_##_tag_id& operator()(T1 t1, T2 t2) \
+        { \
+            _parent->set_##_tag_id(t1, t2); \
+            return *this; \
+        } \
+        template <class T1, class T2, class T3> \
+        inline _tag_mem_type_##_tag_id& operator()(T1 t1, T2 t2, T3 t3) \
+        { \
+            _parent->set_##_tag_id(t1, t2, t3); \
+            return *this; \
+        } \
         inline tag_data_type_##_tag_id get() const \
         { \
             return _parent->get_##_tag_id(); \
